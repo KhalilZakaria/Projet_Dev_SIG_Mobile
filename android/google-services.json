@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "297722274395",
+    "project_id": "projetsig-bfdea",
+    "storage_bucket": "projetsig-bfdea.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297722274395:android:532b9b3b7774c63206157e",
+        "android_client_info": {
+          "package_name": "com.ProjetSIG"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297722274395-hc6ecte22p7rs22ok075cr0o3lf57ods.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPte8cLmv7rnY1EO4mpt3zYn3xgocV43U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297722274395-hc6ecte22p7rs22ok075cr0o3lf57ods.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
