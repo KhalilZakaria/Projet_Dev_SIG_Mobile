@@ -11,6 +11,7 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
+import firestore from '@react-native-firebase/firestore';
 
 import {
   InputField,
@@ -22,6 +23,13 @@ import {
 } from '../styles/AddPost';
 
 const AddPostScreen = () => {
+  return (
+    <View style = {styles.container}>
+       <Text >
+          Add Post
+       </Text>
+   </View>
+  );
 };
 
 export default AddPostScreen;

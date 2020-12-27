@@ -10,7 +10,7 @@ import {
 const HomeScreen = () => {
   return (
     <Container>
-     
+
     </Container>
   );
 };
