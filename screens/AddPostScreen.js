@@ -26,11 +26,45 @@ import {
 import FormInput from '../components/FormInput';
 import SocialButton from '../components/SocialButton';
 
+import Geocoder from 'react-native-geocoding';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import Geolocation from '@react-native-community/geolocation';
+
+
 const AddPostScreen = () => {
+
+  const [info,setInfo] = useState(0);
+  const [info1,setInfo1] = useState(0);
+
+  Geolocation.getCurrentPosition(data => {
+    setInfo(data.coords.latitude)
+  })
+
+  Geolocation.getCurrentPosition(data => {
+    setInfo1(data.coords.longitude)
+  })
+  console.warn("Geolocation")
+
   const {user, logout} = useContext(AuthContext);
   const [description, setDescription] = useState();
   const [lat, setLat] = useState();
   const [long, setLong] = useState();
+
+  // const getData = () => {
+  //   // Initialize the module (needs to be done only once)
+  //   Geocoder.init("AIzaSyCHhPKty4ak8bf8h7hAEcYX-d0NPh3CPHI"); // use a valid API key
+  //   // With more options
+  //   // Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx", {language : "en"}); // set the language
+
+  //   // Search by geo-location (reverse geo-code)
+  //   Geocoder.from(41.89, 12.49)
+  //   .then(json => {
+  //           var addressComponent = json.results[0].address_components[0];
+  //     console.log(addressComponent);
+  //   })
+  //   .catch(error => console.warn(error));
+  // };
+
  const AddPoint = () => {
    
     firestore()
@@ -58,25 +92,28 @@ const AddPostScreen = () => {
         autoCapitalize="none"
         autoCorrect={false}
       />
-       <FormInput
-        labelValue={lat}
-        onChangeText={(lat) => setLat(lat)}
-        placeholderText="latitude"
-        iconType="user"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
+       <Text>
+          Longitude : {info1}
+       </Text>
+       <Text>
+          Latitude : {info}
+       </Text>
         <FormInput
-        labelValue={long}
-        onChangeText={(long) => setLong(long)}
-        placeholderText="longitude"
+        labelValue={info1}
         iconType="user"
-        keyboardType="email-address"
         autoCapitalize="none"
         autoCorrect={false}
       />
-       <SocialButton
+      <SocialButton
+            buttonTitle="Get"
+            color="#de4d41"
+            backgroundColor="#f5e7ea"
+            onPress={() => getData()}
+          />
+          <Text>
+            {info} / {info1}
+          </Text>
+     <SocialButton
             buttonTitle="Add Point"
             color="#de4d41"
             backgroundColor="#f5e7ea"
