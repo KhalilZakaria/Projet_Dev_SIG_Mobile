@@ -98,18 +98,18 @@ const AddPostScreen = () => {
        <Text>
           Latitude : {info}
        </Text>
-        <FormInput
+        {/* <FormInput
         labelValue={info1}
         iconType="user"
         autoCapitalize="none"
         autoCorrect={false}
-      />
-      <SocialButton
+      /> */}
+      {/* <SocialButton
             buttonTitle="Get"
             color="#de4d41"
             backgroundColor="#f5e7ea"
             onPress={() => getData()}
-          />
+          /> */}
           <Text>
             {info} / {info1}
           </Text>
