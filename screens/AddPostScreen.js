@@ -83,6 +83,7 @@ const AddPostScreen = () => {
        <Text>
           Latitude : {lat}
        </Text>
+
           <Text>
             {lat} / {long}
           </Text>
