@@ -10,12 +10,9 @@ import {
 
 const HomeScreen = () => {
   const {user, logout} = useContext(AuthContext);
-  const [data, setData] = useState({
-    Description:'',
-    Lat:'',
-    Long:'',
-    user_id:''
-});
+  const [data, setData] = useState([
+    {Description : "", Lat : 0, Long : 0, user_id :""}
+  ]);
    
   useEffect(() => {
       firestore()
@@ -24,21 +21,22 @@ const HomeScreen = () => {
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          setData(doc.data())
+          setData(dat =>{return [doc.data(), ...dat];})
           console.log(data)
         
       });
        
       });
-  }, [data]);
+  }, []);
   return (
   
     <Container>
-   
-                <Text>User id:{data.user_id}</Text>
-                 <Text>Description:{data.Description}</Text>
-                 <Text>Lat:{data.Lat}</Text>
-                 <Text>Long:{data.Long}</Text>
+      <FlatList data={data}
+      keyExtractor={() => Math.random().toString()}
+      renderItem={({item}) =>(
+       <Text>{item.Description}</Text>
+       )}
+      />
     </Container>
     
   );

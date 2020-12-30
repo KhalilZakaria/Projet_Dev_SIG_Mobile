@@ -10,7 +10,7 @@ import HomeScreen from '../screens/HomeScreen';
 import abous_us from '../screens/abous_us';
 import ProfileScreen from '../screens/ProfileScreen';
 import AddPostScreen from '../screens/AddPostScreen';
-
+import map from '../screens/maps';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -85,6 +85,17 @@ const AppStack = () => {
           ),
         }}
       />
+
+      <Tab.Screen
+        name="Map"
+        component={map}
+        options={{
+          // tabBarLabel: 'Home',
+          tabBarIcon: ({color, size}) => (
+            <Ionicons name="map-outline" color={color} size={size} />
+          ),
+        }}
+      />
       
       <Tab.Screen
         name="Profile"
@@ -96,6 +107,8 @@ const AppStack = () => {
           ),
         }}
       />
+
+
       <Tab.Screen
         name="À propos"
         component={abous_us}

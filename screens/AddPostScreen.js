@@ -33,37 +33,22 @@ import Geolocation from '@react-native-community/geolocation';
 
 const AddPostScreen = () => {
 
-  const [info,setInfo] = useState(0);
-  const [info1,setInfo1] = useState(0);
-
-  Geolocation.getCurrentPosition(data => {
-    setInfo(data.coords.latitude)
-  })
-
-  Geolocation.getCurrentPosition(data => {
-    setInfo1(data.coords.longitude)
-  })
-  console.warn("Geolocation")
-
   const {user, logout} = useContext(AuthContext);
   const [description, setDescription] = useState();
-  const [lat, setLat] = useState();
-  const [long, setLong] = useState();
+  const [lat, setLat] = useState(0);
+  const [long, setLong] = useState(0);
 
-  // const getData = () => {
-  //   // Initialize the module (needs to be done only once)
-  //   Geocoder.init("AIzaSyCHhPKty4ak8bf8h7hAEcYX-d0NPh3CPHI"); // use a valid API key
-  //   // With more options
-  //   // Geocoder.init("xxxxxxxxxxxxxxxxxxxxxxxxx", {language : "en"}); // set the language
+  Geolocation.getCurrentPosition(data => {
+    setLat(data.coords.latitude)
+  }, (error) => alert(error.message),
+  { enableHighAccuracy: true, timeout: 20000, maximumAge: 3600000 })
 
-  //   // Search by geo-location (reverse geo-code)
-  //   Geocoder.from(41.89, 12.49)
-  //   .then(json => {
-  //           var addressComponent = json.results[0].address_components[0];
-  //     console.log(addressComponent);
-  //   })
-  //   .catch(error => console.warn(error));
-  // };
+  Geolocation.getCurrentPosition(data => {
+    setLong(data.coords.longitude)
+  }, (error) => alert(error.message),
+  { enableHighAccuracy: true, timeout: 20000, maximumAge: 3600000 })
+
+
 
  const AddPoint = () => {
    
@@ -93,25 +78,14 @@ const AddPostScreen = () => {
         autoCorrect={false}
       />
        <Text>
-          Longitude : {info1}
+          Longitude : {long}
        </Text>
        <Text>
-          Latitude : {info}
+          Latitude : {lat}
        </Text>
-        {/* <FormInput
-        labelValue={info1}
-        iconType="user"
-        autoCapitalize="none"
-        autoCorrect={false}
-      /> */}
-      {/* <SocialButton
-            buttonTitle="Get"
-            color="#de4d41"
-            backgroundColor="#f5e7ea"
-            onPress={() => getData()}
-          /> */}
+
           <Text>
-            {info} / {info1}
+            {lat} / {long}
           </Text>
      <SocialButton
             buttonTitle="Add Point"
