@@ -37,6 +37,8 @@ const AddPostScreen = () => {
   const [description, setDescription] = useState();
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
+  const [id,setId] = useState(0);
+
 
   Geolocation.getCurrentPosition(data => {
     setLat(data.coords.latitude)
@@ -49,7 +51,6 @@ const AddPostScreen = () => {
   { enableHighAccuracy: true, timeout: 20000, maximumAge: 3600000 })
 
 
-
  const AddPoint = () => {
    
     firestore()
@@ -60,6 +61,7 @@ const AddPostScreen = () => {
       Lat:lat,
       Long:long,
       user_id:user.uid,
+      id_Point : setId({id:1})
     })
     .then(() => {
       console.log('Point added!'); 
