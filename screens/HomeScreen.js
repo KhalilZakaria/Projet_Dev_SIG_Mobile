@@ -1,19 +1,20 @@
 import React, {useContext, useState,useEffect }  from 'react';
-import {View, Text, StyleSheet, FlatList} from 'react-native';
+import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 import { AuthContext } from '../navigation/AuthProvider';
 import {
   Container, UserImg,
 } from '../styles/FeedStyles';
+import { Dimensions } from 'react-native';
 
 
 const HomeScreen = () => {
   const {user, logout} = useContext(AuthContext);
   const [data, setData] = useState([
-    {Description : "", Lat : 0, Long : 0, user_id :""}
   ]);
    
+  const windowWidth = Dimensions.get('window').width;
   useEffect(() => {
       firestore()
       .collection('Users')
@@ -21,8 +22,8 @@ const HomeScreen = () => {
       .get()
       .then(function(querySnapshot) {
         querySnapshot.forEach(function(doc) {
-          setData(dat =>{return [doc.data(), ...dat];})
-          console.log(data)
+          setData(data =>{return [doc.data(), ...data];})
+    
         
       });
        
@@ -30,11 +31,31 @@ const HomeScreen = () => {
   }, []);
   return (
   
-    <Container>
+    <Container >
+      <Text style = {styles.title}>List Of Points </Text>
+
       <FlatList data={data}
+      style={windowWidth}
       keyExtractor={() => Math.random().toString()}
       renderItem={({item}) =>(
-       <Text>{item.Description}</Text>
+      
+              <View style = {{flex:1}}>
+                <Text style = {{  fontFamily: 'Lato-Regular'}}> {"\n"} Point  </Text>
+                    <View style={styles.list}>
+                       <Text style={styles.description} > Description: {item.Description}</Text>  
+                        <Image
+                            source={require("../assets/icons/point.png")}
+                            style ={{width:20,height:20 ,padding:12}}
+                        />
+                   </View>
+                   <View
+                  style={{
+                          borderBottomColor: 'black',
+                          borderBottomWidth: 1,
+                         }}
+/>
+                  
+                </View>
        )}
       />
     </Container>
@@ -43,3 +64,27 @@ const HomeScreen = () => {
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  title:{
+    fontFamily: 'Lato-Regular',
+    fontSize: 28,
+    marginTop: 20,
+    alignItems:'center',
+    color: '#051d5f',
+  },
+  list:{
+    flexDirection:'row',
+    flex:1,
+    justifyContent:"space-around",
+    alignContent:'center',
+    
+  },
+  description:{
+    fontFamily: 'Kufam-SemiBoldItalic',
+    fontSize: 18,
+    fontWeight: '500',
+    color: '#2e64e5',
+    marginRight:20
+  }
+});
