@@ -35,7 +35,8 @@
     "react-native-screens": "^2.10.1",
     "react-native-unique-id": "^2.0.0",
     "react-native-vector-icons": "^7.1.0",
-    "styled-components": "^5.2.0"
+    "styled-components": "^5.2.0",
+    "uuidv5": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

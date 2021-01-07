@@ -7,6 +7,7 @@ import {
   Container, UserImg,
 } from '../styles/FeedStyles';
 import { Dimensions } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const HomeScreen = () => {
@@ -32,15 +33,15 @@ const HomeScreen = () => {
   return (
   
     <Container >
-      <Text style = {styles.title}>List Of Points </Text>
+      <Text style = {styles.title}>List Of Points:  </Text>
 
       <FlatList data={data}
       style={windowWidth}
       keyExtractor={() => Math.random().toString()}
       renderItem={({item}) =>(
-      
-              <View style = {{flex:1}}>
-                <Text style = {{  fontFamily: 'Lato-Regular'}}> {"\n"} Point  </Text>
+             <TouchableOpacity>
+               <View style = {{flex:1}}>
+                <Text style = {{  fontFamily: 'Lato-Regular'}}> {"\n"} Point {item.id_Point.substring(0,2)} </Text>
                     <View style={styles.list}>
                        <Text style={styles.description} > Description: {item.Description}</Text>  
                         <Image
@@ -49,13 +50,12 @@ const HomeScreen = () => {
                         />
                    </View>
                    <View
-                  style={{
-                          borderBottomColor: 'black',
-                          borderBottomWidth: 1,
-                         }}
-/>
+                  style={{borderBottomColor: 'black',borderBottomWidth: 1}}
+                    />
                   
                 </View>
+             </TouchableOpacity>
+              
        )}
       />
     </Container>

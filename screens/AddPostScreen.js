@@ -14,7 +14,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import storage from '@react-native-firebase/storage';
 import firestore from '@react-native-firebase/firestore';
 import { AuthContext } from '../navigation/AuthProvider';
-
+import uuid from "uuid";
 import {
   InputField,
   InputWrapper,
@@ -32,12 +32,12 @@ import Geolocation from '@react-native-community/geolocation';
 
 
 const AddPostScreen = () => {
-
+  
   const {user, logout} = useContext(AuthContext);
   const [description, setDescription] = useState();
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
-  const [id,setId] = useState(0);
+  const [id,setId] = useState("");
 
 
   Geolocation.getCurrentPosition(data => {
@@ -52,7 +52,7 @@ const AddPostScreen = () => {
 
 
  const AddPoint = () => {
-   
+     
     firestore()
     .collection('Users')
     .add({
@@ -61,7 +61,7 @@ const AddPostScreen = () => {
       Lat:lat,
       Long:long,
       user_id:user.uid,
-      id_Point : setId({id:1})
+      id_Point : uuid()
     })
     .then(() => {
       console.log('Point added!'); 
@@ -85,10 +85,6 @@ const AddPostScreen = () => {
        <Text>
           Latitude : {lat}
        </Text>
-
-          <Text>
-            {lat} / {long}
-          </Text>
      <SocialButton
             buttonTitle="Add Point"
             color="#de4d41"
