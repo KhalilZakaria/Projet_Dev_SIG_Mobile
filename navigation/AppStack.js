@@ -11,6 +11,8 @@ import abous_us from '../screens/abous_us';
 import ProfileScreen from '../screens/ProfileScreen';
 import AddPostScreen from '../screens/AddPostScreen';
 import map from '../screens/maps';
+import mapSingle from '../screens/SinglePointMap';
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -62,6 +64,25 @@ const FeedStack = ({navigation}) => (
         ),
       }}
     />
+     <Stack.Screen
+      name="Single Point"
+      component={mapSingle}
+      options={{
+        title: '',
+        headerTitleAlign: 'center',
+        headerStyle: {
+          backgroundColor: '#2e64e515',
+          shadowColor: '#2e64e515',
+          elevation: 0,
+        },
+        headerBackTitleVisible: false,
+   
+      }}
+      
+    />
+    
+
+   
   </Stack.Navigator>
 );
 
@@ -96,6 +117,7 @@ const AppStack = () => {
           ),
         }}
       />
+    
       
       <Tab.Screen
         name="Profile"

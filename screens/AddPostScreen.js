@@ -25,10 +25,12 @@ import {
 } from '../styles/AddPost';
 import FormInput from '../components/FormInput';
 import SocialButton from '../components/SocialButton';
+import { useNavigation } from '@react-navigation/native';
 
 import Geocoder from 'react-native-geocoding';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Geolocation from '@react-native-community/geolocation';
+
 
 
 const AddPostScreen = () => {
@@ -38,6 +40,7 @@ const AddPostScreen = () => {
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
   const [id,setId] = useState("");
+  const navigation = useNavigation();
 
 
   Geolocation.getCurrentPosition(data => {
@@ -65,8 +68,9 @@ const AddPostScreen = () => {
     })
     .then(() => {
       console.log('Point added!'); 
-      alert("Point Added")
     });
+    navigation.navigate('Geo App');
+  
   }
   return (
     <View >
