@@ -1,10 +1,18 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
+import { View, Text, Button, StyleSheet,Image } from 'react-native';
 
 const abous_us = () => {
     return (
-      <View style={styles.container}>
-        <Text>à Propos de nous</Text>
+      <View >
+         <Image
+         style={{width: 400  , height: 250}}
+        source={{
+          uri:
+            'https://www.codematics.co/wp-content/uploads/2018/04/triggerport.jpg',
+        }}
+      />
+        <Text style={styles.listItemText}>à Propos de nous</Text>
+        
         
       </View>
     );
@@ -33,4 +41,13 @@ const styles = StyleSheet.create({
     alignItems: 'center', 
     justifyContent: 'center'
   },
+  listItemView :{
+    flexDirection : 'row',
+    justifyContent : 'space-between',
+    alignContent : 'center',
+},
+
+listItemText : {
+    fontSize : 18,
+},
 });

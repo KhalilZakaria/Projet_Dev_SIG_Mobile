@@ -41,7 +41,7 @@ const HomeScreen = () => {
       renderItem={({item}) =>(
              <TouchableOpacity>
                <View style = {{flex:1}}>
-                <Text style = {{  fontFamily: 'Lato-Regular'}}> {"\n"} Point {item.id_Point.substring(0,2)} </Text>
+                <Text style = {{  fontFamily: 'Lato-Regular'}}> {"\n"} Point </Text>
                     <View style={styles.list}>
                        <Text style={styles.description} > Description: {item.Description}</Text>  
                         <Image
