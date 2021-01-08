@@ -62,7 +62,7 @@ const mapSingle = () => {
                             <Marker
                                 key={Math.random().toString()}
                                 coordinate={{latitude : marker.Lat, longitude : marker.Long }}
-                                title={`Point${marker.id_Point.substring(0,2)}`}
+                                title={`Point$`}
                                 description={marker.Description}
                             />
                           
