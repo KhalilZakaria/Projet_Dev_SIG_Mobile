@@ -1,20 +1,25 @@
 import React, {useContext, useState,useEffect }  from 'react';
 import {View, Text, StyleSheet, FlatList, Image} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
-
+import { useNavigation } from '@react-navigation/native';
 import { AuthContext } from '../navigation/AuthProvider';
 import {
   Container, UserImg,
 } from '../styles/FeedStyles';
 import { Dimensions } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AsyncStorage } from 'react-native';
+
+
 
 
 const HomeScreen = () => {
   const {user, logout} = useContext(AuthContext);
+  const navigation = useNavigation();
+ 
   const [data, setData] = useState([
   ]);
-   
+ 
   const windowWidth = Dimensions.get('window').width;
   useEffect(() => {
       firestore()
@@ -30,6 +35,8 @@ const HomeScreen = () => {
        
       });
   }, []);
+
+
   return (
   
     <Container >
@@ -39,9 +46,27 @@ const HomeScreen = () => {
       style={windowWidth}
       keyExtractor={() => Math.random().toString()}
       renderItem={({item}) =>(
-             <TouchableOpacity>
+             <TouchableOpacity  onPress={ async () => {
+                try {
+                  await AsyncStorage.setItem(
+                    'UID123',
+                    item.Lat.toString()
+                  );
+                  await AsyncStorage.setItem(
+                    'UID124',
+                    item.Long.toString()
+                  );
+                } catch (error) {
+                  // Error saving data
+                  console.error(error)
+                }
+               navigation.navigate('Single Point')
+         
+               
+               
+               }}>
                <View style = {{flex:1}}>
-                <Text style = {{  fontFamily: 'Lato-Regular'}}> {"\n"} Point </Text>
+                <Text style = {{  fontFamily: 'Lato-Regular'}}> {"\n"} Point {item.id_Point.substring(0,2)} </Text>
                     <View style={styles.list}>
                        <Text style={styles.description} > Description: {item.Description}</Text>  
                         <Image

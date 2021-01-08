@@ -5,14 +5,28 @@ import {View, Text, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import { Marker } from 'react-native-maps';
 import { AsyncStorage } from 'react-native';
-const map = () => {
+
+
+
+const mapSingle = () => {
   const {user, logout} = useContext(AuthContext);
   const [markers, setMarkers] = useState([]);
   const [lat,setLat] = useState(33.5307243);
   const [long,setLong] = useState( -7.6868693);
-
+  const [latitudeDelta,setLatitudeDelta] = useState(0)
+  const [longitudeDelta,setLongitudeeDelta] = useState(0)
+ 
  
   useEffect(() => {
+    
+      AsyncStorage.getItem('UID123', (err, result) => {
+        setLat(parseFloat(result))
+      
+        
+      });
+      AsyncStorage.getItem('UID124', (err, result) => {
+        setLong(parseFloat(result))
+      });
     
     firestore()
     .collection('Users')
@@ -39,8 +53,8 @@ const map = () => {
          region={{
            latitude: lat,
            longitude:long,
-           latitudeDelta: 10,
-           longitudeDelta: 20,
+           latitudeDelta: latitudeDelta,
+           longitudeDelta: longitudeDelta,
          }}
        >
          {markers && markers.map(marker => (
@@ -59,7 +73,7 @@ const map = () => {
   };
   
   
-export default map;
+export default mapSingle;
 
 
 const styles = StyleSheet.create({
