@@ -20,7 +20,7 @@ const map = () => {
     });
      
     });
-}, [markers]);
+}, []);
     
 
       return (
@@ -32,8 +32,8 @@ const map = () => {
          region={{
            latitude: 33.5307243,
            longitude: -7.6868693,
-           latitudeDelta: 10,
-           longitudeDelta: 20,
+           latitudeDelta: 1,
+           longitudeDelta: 2,
          }}
        >
          {markers && markers.map(marker => (
